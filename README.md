@@ -1,14 +1,15 @@
-%h1 Innovation Depot Building Layout
+# Innovation Depot Building Layout
 
 Application for visualizing the Innovation Depot building Layout
 
 Started as part of the Mobile App Developers Hack-A-Thon, 13-Jul-2013
 
-%img{alt: 'GPLv3 Logo', src: 'gplv3-127x51.png', title: "This program licensed unver GPLv3"}
+!['GPLv3 Logo'](gplv3-127x51.png "This program licensed unver GPLv3")
 
-%h2 License: GPL V3
+### License: GPL V3
 
-%pre
+<pre>
+
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -22,3 +23,4 @@ Started as part of the Mobile App Developers Hack-A-Thon, 13-Jul-2013
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+</pre>
