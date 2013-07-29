@@ -135,8 +135,14 @@ function getRoot(root) {
 function getEventPoint(evt) {
 	var p = root.createSVGPoint();
 
+    if(evt.touches != undefined) {
+        p.x = evt.touches[0].clientX;
+        p.y = evt.touches[0].clientY;
+    } else {
 	p.x = evt.clientX;
 	p.y = evt.clientY;
+    }
+
 
 	return p;
 }
@@ -163,8 +169,23 @@ function dumpMatrix(matrix) {
  * Sets attributes of an element.
  */
 function setAttributes(element, attributes){
-	for (var i in attributes)
-		element.setAttributeNS(null, i, attributes[i]);
+    for (var i in attributes) {
+        if (i == "ontouchstart") {
+            element.addEventListener('touchstart', function (evt) {
+                                         handleMouseDown(evt);
+                                     },false);
+        } else if  (i == "ontouchend") {
+            element.addEventListener('touchend', function (evt) {
+                                         handleMouseUp(evt);
+                                     },false);
+        } else if  (i == "ontouchmove") {
+            element.addEventListener('touchmove', function (evt) {
+                                         handleMouseMove(evt);
+                                     },false);
+        } else {
+	    element.setAttributeNS(null, i, attributes[i]);
+        }
+    }
 }
 
 /**
@@ -223,14 +244,11 @@ function handleMouseMove(evt) {
 	if(state == 'pan' && enablePan) {
 		// Pan mode
 		var p = getEventPoint(evt).matrixTransform(stateTf);
-
 		setCTM(g, stateTf.inverse().translate(p.x - stateOrigin.x, p.y - stateOrigin.y));
 	} else if(state == 'drag' && enableDrag) {
 		// Drag mode
 		var p = getEventPoint(evt).matrixTransform(g.getCTM().inverse());
-
 		setCTM(stateTarget, root.createSVGMatrix().translate(p.x - stateOrigin.x, p.y - stateOrigin.y).multiply(g.getCTM().inverse()).multiply(stateTarget.getCTM()));
-
 		stateOrigin = p;
 	}
 }
@@ -245,7 +263,6 @@ function handleMouseDown(evt) {
 	evt.returnValue = false;
 
 	var svgDoc = evt.target.ownerDocument;
-
 	var g = getRoot(svgDoc);
 	if(
 		evt.target.tagName == "svg"
