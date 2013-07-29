@@ -68,3 +68,26 @@ ul.tenants li h3 {
 .clear {
     clear: both;
 }
+
+.fo-label {
+    overflow: visible;
+    text-anchor: middle;
+    font-size:8pt;
+    font-style:normal;
+    font-weight:bold;
+    line-height:125%;
+    letter-spacing:0px;
+    word-spacing:0px;
+    fill:#000000;
+    fill-opacity:1;
+    stroke:#000000;
+    font-family:Sans;
+}
+
+.fullname {
+    font-size: 2pt;
+}
+
+.name-container {
+    text-align: center;
+}

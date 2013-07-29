@@ -198,27 +198,28 @@ function attach_tenant_data(room_element, tenant_data,our_layer) {
     element_bbox = room_element.getBBox();
     element_y = room_element.y;
     if(tenant_data.tenant != undefined ) {
+        var tenant_caps = tenant_data.tenant.match(/\s?[A-Z]+/g);
+        var tenant_abbr = tenant_caps.join("");
         room_element.style.fill = "#0f0";
         fo_element = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
         fo_element.id = "fo_" + room_element.id;
-        fo_element.setAttribute('style',"overflow: visible;text-anchor: middle;font-size:8pt;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#000000;font-family:Sans");
+        fo_element.setAttribute('class',"fo-label");
         fo_element.setAttribute('x',element_bbox.x);
         fo_element.setAttribute('y',element_bbox.y + (element_bbox.height / 10));
         fo_element.setAttribute('width',element_bbox.width);
         fo_element.setAttribute('height',element_bbox.height / 2);
         div_element = document.createElementNS("http://www.w3.org/1999/xhtml", "div");
-        div_element.setAttribute('style',"text-align: center");
-        text_node = document.createTextNode(tenant_data.tenant);
-        div_element.appendChild(text_node);
+        div_element.setAttribute('class',"name-container");
+        abbr_node = document.createElementNS("http://www.w3.org/1999/xhtml", "div");
+        abbr_node.setAttribute('class','abbrname');
+        abbr_node.appendChild(document.createTextNode(tenant_abbr));
+        name_node = document.createElementNS("http://www.w3.org/1999/xhtml", "span");
+        name_node.setAttribute('class','fullname');
+        name_node.appendChild(document.createTextNode(tenant_data.tenant));
+        div_element.appendChild(abbr_node);
+        div_element.appendChild(name_node);
         fo_element.appendChild(div_element);
         room_element.parentNode.appendChild(fo_element);
-        fo_bbox = fo_element.getBBox();
-        while(fo_bbox.width > element_bbox.width || fo_bbox.height > element_bbox.height || initial_pt_size == 0) {
-            alert("smaller");
-            initial_pt_size--;
-            fo_element.style.fontSize = "" + initial_pt_size + "pt";
-            fo_bbox = fo_element.getBBox();
-        }
     }
     if(tenant_data.hoods) {
         var title;
@@ -228,11 +229,8 @@ function attach_tenant_data(room_element, tenant_data,our_layer) {
         icons[icon_index].setAttribute('y',element_bbox.y + (element_bbox.height - 20));
         icons[icon_index].setAttribute('width',16);
         icons[icon_index].setAttribute('height',16);
-        icons[icon_index].style.opacity = 1;
-        icons[icon_index].style.stroke = "#000000";
-        icons[icon_index].style.opacity = 1;
+        icons[icon_index].setAttribute('class','ticon ticon-hoods');
         icons[icon_index].setAttribute("preserveAspectRatio","xMinYMin meet");
-        icons[icon_index].set
         title = document.createElementNS("http://www.w3.org/2000/svg", "title");
         title.appendChild(document.createTextNode("Hoods"));
         icons[icon_index].appendChild(title);
@@ -246,11 +244,8 @@ function attach_tenant_data(room_element, tenant_data,our_layer) {
         icons[icon_index].setAttribute('y',element_bbox.y + (element_bbox.height - 20));
         icons[icon_index].setAttribute('width',16);
         icons[icon_index].setAttribute('height',16);
-        icons[icon_index].style.opacity = 1;
-        icons[icon_index].style.stroke = "#000000";
-        icons[icon_index].style.opacity = 1;
+        icons[icon_index].setAttribute('class','ticon ticon-lab');
         icons[icon_index].setAttribute("preserveAspectRatio","xMinYMin meet");
-        icons[icon_index].set
         title = document.createElementNS("http://www.w3.org/2000/svg", "title");
         title.appendChild(document.createTextNode("Lab"));
         icons[icon_index].appendChild(title);
@@ -263,11 +258,8 @@ function attach_tenant_data(room_element, tenant_data,our_layer) {
         icons[icon_index].setAttribute('y',element_bbox.y + (element_bbox.height - 20));
         icons[icon_index].setAttribute('width',16);
         icons[icon_index].setAttribute('height',16);
-        icons[icon_index].style.opacity = 1;
-        icons[icon_index].style.stroke = "#000000";
-        icons[icon_index].style.opacity = 1;
+        icons[icon_index].setAttribute('class','ticon ticon-office');
         icons[icon_index].setAttribute("preserveAspectRatio","xMinYMin meet");
-        icons[icon_index].set
         title = document.createElementNS("http://www.w3.org/2000/svg", "title");
         title.appendChild(document.createTextNode("Office"));
         icons[icon_index].appendChild(title);
@@ -281,11 +273,8 @@ function attach_tenant_data(room_element, tenant_data,our_layer) {
         icons[icon_index].setAttribute('y',element_bbox.y + (element_bbox.height - 20));
         icons[icon_index].setAttribute('width',16);
         icons[icon_index].setAttribute('height',16);
-        icons[icon_index].style.opacity = 1;
-        icons[icon_index].style.stroke = "#000000";
-        icons[icon_index].style.opacity = 1;
+        icons[icon_index].setAttribute('class','ticon ticon-empty');
         icons[icon_index].setAttribute("preserveAspectRatio","xMinYMin meet");
-        icons[icon_index].set
         title = document.createElementNS("http://www.w3.org/2000/svg", "title");
         title.appendChild(document.createTextNode("No Tenant"));
         icons[icon_index].appendChild(title);

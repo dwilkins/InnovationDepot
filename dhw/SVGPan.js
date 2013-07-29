@@ -1,9 +1,9 @@
-/** 
+/**
  *  SVGPan library 1.2.2
  * ======================
  *
- * Given an unique existing element with id "viewport" (or when missing, the 
- * first g-element), including the the library into any SVG adds the following 
+ * Given an unique existing element with id "viewport" (or when missing, the
+ * first g-element), including the the library into any SVG adds the following
  * capabilities:
  *
  *  - Mouse panning
@@ -41,17 +41,17 @@
  * This code is licensed under the following BSD license:
  *
  * Copyright 2009-2010 Andrea Leofreddi <a.leofreddi@itcharm.com>. All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without modification, are
  * permitted provided that the following conditions are met:
- * 
+ *
  *    1. Redistributions of source code must retain the above copyright notice, this list of
  *       conditions and the following disclaimer.
- * 
+ *
  *    2. Redistributions in binary form must reproduce the above copyright notice, this list
  *       of conditions and the following disclaimer in the documentation and/or other materials
  *       provided with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY Andrea Leofreddi ``AS IS'' AND ANY EXPRESS OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
  * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL Andrea Leofreddi OR
@@ -61,7 +61,7 @@
  * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * The views and conclusions contained in the software and documentation are those of the
  * authors and should not be interpreted as representing official policies, either expressed
  * or implied, of Andrea Leofreddi.
@@ -69,7 +69,7 @@
 
 "use strict";
 
-/// CONFIGURATION 
+/// CONFIGURATION
 /// ====>
 
 var enablePan = 1; // 1 or 0: enable or disable panning (default enabled)
@@ -78,7 +78,7 @@ var enableDrag = 0; // 1 or 0: enable or disable dragging (default disabled)
 var zoomScale = 0.2; // Zoom sensitivity
 
 /// <====
-/// END OF CONFIGURATION 
+/// END OF CONFIGURATION
 
 var root = document.documentElement;
 
@@ -94,6 +94,9 @@ function setupHandlers(root){
 		"onmouseup" : "handleMouseUp(evt)",
 		"onmousedown" : "handleMouseDown(evt)",
 		"onmousemove" : "handleMouseMove(evt)",
+		"ontouchstop" : "handleMouseUp(evt)",
+		"ontouchstart" : "handleMouseDown(evt)",
+		"ontouchmove" : "handleMouseMove(evt)"
 		//"onmouseout" : "handleMouseUp(evt)", // Decomment this to stop the pan functionality when dragging out of the SVG element
 	});
 
@@ -188,7 +191,7 @@ function handleMouseWheel(evt) {
 	var z = Math.pow(1 + zoomScale, delta);
 
 	var g = getRoot(svgDoc);
-	
+
 	var p = getEventPoint(evt);
 
 	p = p.matrixTransform(g.getCTM().inverse());
@@ -244,10 +247,9 @@ function handleMouseDown(evt) {
 	var svgDoc = evt.target.ownerDocument;
 
 	var g = getRoot(svgDoc);
-
 	if(
-		evt.target.tagName == "svg" 
-		|| !enableDrag // Pan anyway when drag is disabled and the user clicked on an element 
+		evt.target.tagName == "svg"
+		|| !enableDrag // Pan anyway when drag is disabled and the user clicked on an element
 	) {
 		// Pan mode
 		state = 'pan';
