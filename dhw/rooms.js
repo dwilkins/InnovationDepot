@@ -170,10 +170,16 @@ this_svg.addEventListener (
         process_innovation_depot_svg();
     });
 
+var global_svg_doc = undefined;
+var global_svg_element = undefined;
+
 function process_innovation_depot_svg() {
     var i,id_room;
     svg_element = document.getElementById('innovation-depot-map');
+    global_svg_element = svg_element;
     svg_doc = svg_element.contentDocument;
+    global_svg_doc = svg_doc;
+//    prepare_map(svg_doc);
     our_layer = svg_doc.getElementById('layer1');
     for(i = 0;i< rooms.length;i++) {
         id_room = svg_doc.getElementById(rooms[i].office);
@@ -291,3 +297,22 @@ function attach_tenant_data(room_element, tenant_data,our_layer) {
     }
 
 }
+
+function prepare_map(svg_doc) {
+    var svg = svg_doc.getElementById("svg2");
+    global_svg_doc = svg_doc;
+    var width  = svg.getAttribute("width");
+    var height = svg.getAttribute("height");
+
+    svg.setAttribute("viewBox", "0 0 " + width + ' ' + height);
+    svg.setAttribute('preserveAspectRatio', 'xMidYmid meet')
+    window_resize();
+}
+
+function window_resize() {
+    return;
+    var svg = global_svg_doc.getElementById("svg2");
+//    svg.setAttribute("width", $(".map-container").width());
+    svg.setAttribute("height",$(global_svg_element).parent().height());
+   }
+

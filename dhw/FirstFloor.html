@@ -15,23 +15,27 @@
  -->
   <head>
     <title>Innovation Depot First Floor Tenants</title>
+    <meta name="viewport" content="width=device-width" />
     <link href="rooms.css" rel="stylesheet" type="text/css" ></link>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
   </head>
-  <body>
-    <div class="masthead">
-      <img  style="margin: 0 auto;" src="innovation_depot.png" />
-      <ul class="tenants">
-        <li>First Floor Tenants</li>
-        <li><a href="SecondFloor.html">Second Floor Tenants</a></li>
-      </ul>
-      <div class="clear"></div>
-    </div>
+  <body onresize="window_resize();">
     <div class="container">
-      <object id="innovation-depot-map" data="Innovation_Depot_1stFloor.svg" type="image/svg+xml">
-        <script src="rooms.js"></script>
-      </object>
+      <div class="page-header row-fluid logo">
+        <img src="innovation_depot.png" />
+      </div>
+      <div class="row-fluid">
+        <ul class="tenants row-fluid">
+          <li class="span5 pull-left text-center"><h3>First Floor Tenants</h3></li>
+          <li class="span5 pull-right text-center"><h3><a href="SecondFloor.html">Second Floor Tenants</a></h3></li>
+        </ul>
+      </div>
+      <div class="map-container row-fluid">
+        <object id="innovation-depot-map" data="Innovation_Depot_1stFloor.svg?v=2" type="image/svg+xml"></object>
+      </div>
     </div>
+    <script src="rooms.js"></script>
   </body>
 </html>

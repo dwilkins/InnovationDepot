@@ -21,15 +21,23 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    width="591.89844"
    height="592.83203"
    id="svg2"
+   viewBox="0 0 592 593"
+   preserveAspectRatio="xMidYmid meet"
    xml:space="preserve"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="Innovation_Depot_2ndFloor.svg"><sodipodi:namedview
+   sodipodi:docname="Innovation_Depot_2ndFloor.svg">
+
+ <script xlink:href="SVGPan.js"/>
+
+
+<sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1"
@@ -104,7 +112,9 @@
     ]]></style>
 
 
-</defs><g
+</defs>
+   <g id="viewport">
+    <g
      transform="matrix(1.25,0,0,-1.25,-103.66459,831.60101)"
      id="g10"><g
        transform="scale(0.12,0.12)"
@@ -25357,4 +25367,4 @@
            xml:space="preserve"
            style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
            sodipodi:linespacing="125%">       Test   </text>
-</g></g></g></svg>
+</g></g></g> </g> </svg>
